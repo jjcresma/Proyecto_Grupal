@@ -14,16 +14,23 @@ exports.principal = function(req, res, next) {
 exports.registroReclamo = function(req, res) {
   var reclamo = {tipoReclamo:'odeco',observacion:'mal servicio',fecha:'30/11/2016'}
  		              res.render('registro', {reclamo:reclamo});
+                  
 
 		   };
 
-       exports.buscarFecha = function(req, res) {
-  var reclamo = {tipoReclamo:' ',observacion:' ',fecha:' '}
-                  res.render('registro', {reclamo:reclamo});
+exports.fechaReclamo = function(req, res) {
+  console.log("buscar");
+                  reclamo = models.reclamo.build(req.body.reclamo);
+                    models.reclamo.findAll().then(function(reclamos){
+                    res.render('fechas',{title:'Registros por Fechas',
+                            reclamos: reclamos
 
-       };
+                          });
 
+                          });
+console.log();
 
+          }
 exports.guardarReclamo = function(req, res) {
 
 	console.log("ingresa a guardar");
@@ -32,6 +39,7 @@ exports.guardarReclamo = function(req, res) {
     reclamo.save	({fields:["tipoReclamo",
     					      "observacion",
     					      "fecha"
+
     					  ]
     			 }).then(function(){
     			 	console.log("ingresa a redirect");

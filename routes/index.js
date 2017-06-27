@@ -3,7 +3,7 @@ var router = express.Router();
 var reclamoController = require('../controllers/reclamoController');
 
 /* GET home page. */
-router.get('/',reclamoController.principal);
+router.get('/principal',reclamoController.principal);
 router.get('/registroReclamo',reclamoController.registroReclamo);
 router.post('/guardar', reclamoController.guardarReclamo);
 module.exports = router;
